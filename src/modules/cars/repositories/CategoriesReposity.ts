@@ -1,8 +1,6 @@
 import { Category } from "../model/Category";
 import { ICategoriesReposity, ICreateCategoryDTO } from "./ICategoriesReposity";
 
-
-
 class CategoriesReposity implements ICategoriesReposity {
   private categories: Category[];
 
