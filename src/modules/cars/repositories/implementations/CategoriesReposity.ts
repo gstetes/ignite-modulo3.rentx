@@ -1,11 +1,21 @@
-import { Category } from "../model/Category";
-import { ICategoriesReposity, ICreateCategoryDTO } from "./ICategoriesReposity";
+import { Category } from "../../model/Category";
+import { ICategoriesReposity, ICreateCategoryDTO } from "../ICategoriesReposity";
 
 class CategoriesReposity implements ICategoriesReposity {
   private categories: Category[];
 
-  constructor() {
+  private static INSTANCE: CategoriesReposity;
+
+  private constructor() {
     this.categories = [];
+  };
+
+  public static getInstance(): CategoriesReposity {
+    if (!CategoriesReposity.INSTANCE) {
+      CategoriesReposity.INSTANCE = new CategoriesReposity();
+    };
+
+    return CategoriesReposity.INSTANCE;
   };
 
   create({ name, description }: ICreateCategoryDTO): void {
