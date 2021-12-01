@@ -2,10 +2,12 @@ import { CategoriesReposity } from "../../repositories/implementations/Categorie
 import { CreateCategoryController } from "./CreateCategoryController";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
-const categoriesRepository = CategoriesReposity.getInstance();
+export default (): CreateCategoryController => {
+  const categoriesRepository = new CategoriesReposity();
 
-const createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
+  const createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
 
-const createCategoryController = new CreateCategoryController(createCategoryUseCase);
+  const createCategoryController = new CreateCategoryController(createCategoryUseCase);
 
-export { createCategoryController };
+  return createCategoryController;
+};

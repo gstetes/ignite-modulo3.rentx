@@ -4,18 +4,9 @@ import { getRepository, Repository } from 'typeorm';
 
 class CategoriesReposity implements ICategoriesReposity {
   private repository: Repository<Category>;
-
-  private static INSTANCE: CategoriesReposity;
-
-  private constructor() {
+  
+  constructor() {
     this.repository = getRepository(Category);
-  };
-
-  public static getInstance(): CategoriesReposity {
-    if (!CategoriesReposity.INSTANCE) {
-      CategoriesReposity.INSTANCE = new CategoriesReposity();
-    };
-    return CategoriesReposity.INSTANCE;
   };
 
   async create({ name, description }: ICreateCategoryDTO): Promise<void> {
